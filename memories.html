@@ -2,23 +2,24 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Memories ❤️</title>
+<title>Our Memories ❤️</title>
 
 <style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif;}
+
 body{
-margin:0;
+height:100vh;
 background:linear-gradient(135deg,#ffc3a0,#ffafbd);
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
-height:100vh;
 color:white;
 text-align:center;
-font-family:sans-serif;
 overflow:hidden;
 }
 
+/* POLAROID */
 .polaroid{
 width:200px;
 height:260px;
@@ -26,11 +27,13 @@ background:white;
 color:black;
 border-radius:12px;
 padding:10px;
-box-shadow:0 12px 35px rgba(0,0,0,0.3);
+box-shadow:0 12px 35px rgba(0,0,0,0.35);
 opacity:0;
 transform:translateX(140%);
-transition:all 0.9s;
+transition:all 0.9s ease;
 position:absolute;
+display:flex;
+flex-direction:column;
 }
 
 .polaroid img{
@@ -38,13 +41,21 @@ width:100%;
 height:160px;
 object-fit:cover;
 border-radius:6px;
+opacity:0;
+transition:opacity 0.7s;
 }
 
-.caption{margin-top:10px;font-size:0.9rem;}
+.caption{
+margin-top:10px;
+font-size:0.9rem;
+}
 
+/* animation states */
 .show{opacity:1;transform:translateX(0);}
 .hide{transform:translateX(-140%);opacity:0;}
+.showimg img{opacity:1;}
 
+/* final grid */
 .grid{
 display:grid;
 grid-template-columns:1fr 1fr;
@@ -54,38 +65,38 @@ position:relative;
 
 .final{
 margin-top:20px;
+font-size:1.2rem;
 opacity:0;
 transition:opacity 1.5s;
+max-width:320px;
 }
 </style>
 </head>
 
 <body>
 
-<audio id="memoryMusic" src="memory.mp3"></audio>
+<audio id="memoryMusic" src="memory.mp3" loop></audio>
 
 <div id="stage"></div>
-<div class="final" id="finalText">Will you be here next year… and forever? ❤️</div>
+<div class="final" id="finalText">
+Will you be here for this next year… and every year after? ❤️
+</div>
 
 <script>
 const music=document.getElementById('memoryMusic');
-music.loop=true;
 
-/* mobile unlock */
-document.body.addEventListener('touchstart', ()=>{
-  music.play().catch(()=>{});
-},{once:true});
-
+/* start memory music */
 music.play().catch(()=>{});
 
-function createPolaroid(src,txt){
+/* polaroid creator */
+function createPolaroid(src,text){
   let p=document.createElement('div');
   p.className='polaroid';
-  p.innerHTML=`<img src="${src}"><div class="caption">${txt}</div>`;
+  p.innerHTML=`<img src="${src}"><div class="caption">${text}</div>`;
   return p;
 }
 
-const photos=[
+const memories=[
 ["photo1.jpg","The first smile I fell for"],
 ["photo2.jpg","Moments that felt like home"],
 ["photo3.jpg","Us, just being us"],
@@ -94,27 +105,40 @@ const photos=[
 
 const stage=document.getElementById('stage');
 
-photos.forEach((ph,i)=>{
+/* cinematic sequence */
+memories.forEach((m,i)=>{
+
   setTimeout(()=>{
-    let pol=createPolaroid(ph[0],ph[1]);
+
+    let pol=createPolaroid(m[0],m[1]);
     stage.appendChild(pol);
 
+    /* slide in empty polaroid */
     setTimeout(()=>pol.classList.add('show'),300);
+
+    /* image fade in */
+    setTimeout(()=>pol.classList.add('showimg'),900);
+
+    /* stay moment */
     setTimeout(()=>pol.classList.add('hide'),4200);
-  },i*4500);
+
+  }, i*4800);
 });
 
+/* final grid + ending text */
 setTimeout(()=>{
+
   stage.className="grid";
 
-  photos.forEach(ph=>{
-    let pol=createPolaroid(ph[0],ph[1]);
+  memories.forEach(m=>{
+    let pol=createPolaroid(m[0],m[1]);
     pol.classList.add('show');
     stage.appendChild(pol);
   });
 
   document.getElementById('finalText').style.opacity=1;
-},20000);
+
+},22000);
 </script>
 
 </body>
