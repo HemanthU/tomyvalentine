@@ -1,8 +1,13 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>For Moni ❤️</title><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet"><style>
+<title>For Moni ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
 body{overflow-x:hidden;color:white;text-align:center;background:black;}
 
@@ -30,55 +35,154 @@ button{padding:12px 24px;border:none;border-radius:30px;font-size:1rem;cursor:po
 .forever-msg{font-size:1.6rem;max-width:360px;line-height:1.6;}
 
 /* MEMORY CINEMATIC */
-.memory-section{min-height:100vh;background:linear-gradient(135deg,#ffc3a0,#ffafbd);display:flex;flex-direction:column;justify-content:center;align-items:center;gap:25px;overflow:hidden;}
+.memory-section{
+min-height:100vh;
+background:linear-gradient(135deg,#ffc3a0,#ffafbd);
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+gap:25px;
+overflow:hidden;
+}
 
-.polaroid-stage{position:relative;width:100%;max-width:420px;height:420px;display:flex;justify-content:center;align-items:center;}
+.polaroid-stage{
+position:relative;
+width:100%;
+max-width:420px;
+height:420px;
+display:flex;
+justify-content:center;
+align-items:center;
+}
 
-.polaroid{position:absolute;width:190px;height:240px;background:white;color:black;padding:10px 10px 28px;border-radius:12px;box-shadow:0 12px 35px rgba(0,0,0,0.35);opacity:0;transform:translateX(140%);transition:all 0.9s ease;display:flex;flex-direction:column;}
-.polaroid img{width:100%;height:150px;object-fit:cover;border-radius:6px;opacity:0;transition:opacity 0.7s ease;}
+.polaroid{
+position:absolute;
+width:190px;
+height:240px;
+background:white;
+color:black;
+padding:10px 10px 28px;
+border-radius:12px;
+box-shadow:0 12px 35px rgba(0,0,0,0.35);
+opacity:0;
+transform:translateX(140%);
+transition:all 0.9s ease;
+display:flex;
+flex-direction:column;
+}
+
+.polaroid img{
+width:100%;
+height:150px;
+object-fit:cover;
+border-radius:6px;
+opacity:0;
+transition:opacity 0.7s ease;
+}
+
 .caption{margin-top:10px;font-size:0.9rem;min-height:40px;}
 
-.slide-in{opacity:1;transform:translateX(0);} 
-.show-img img{opacity:1;} 
+.slide-in{opacity:1;transform:translateX(0);}
+.show-img img{opacity:1;}
 .move-out{transform:translateX(-140%);opacity:0;}
 
-.grid-layout{position:relative;display:grid;grid-template-columns:repeat(2,1fr);gap:18px;max-width:420px;}
-.grid-layout .polaroid{position:relative;transform:none;opacity:1;}
+.grid-layout{
+position:relative;
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:18px;
+max-width:420px;
+}
 
-.final-text{font-size:1.3rem;line-height:1.6;opacity:0;transition:opacity 1.5s ease;max-width:360px;}
-</style></head><body><audio id="revealMusic" src="final.mp3" loop></audio> <audio id="proposalMusic" src="proposal.mp3" loop></audio> <audio id="memoryMusic" src="memory.mp3" loop></audio>
+.grid-layout .polaroid{
+position:relative;
+transform:none;
+opacity:1;
+}
 
-<!-- SCREEN 1 --><section class="story-screen gradient1">
+.final-text{
+font-size:1.3rem;
+line-height:1.6;
+opacity:0;
+transition:opacity 1.5s ease;
+max-width:360px;
+}
+</style>
+</head>
+
+<body>
+
+<audio id="revealMusic" src="final.mp3"></audio>
+<audio id="proposalMusic" src="proposal.mp3"></audio>
+<audio id="memoryMusic" src="memory.mp3"></audio>
+
+<!-- SCREEN 1 -->
+<section class="story-screen gradient1">
   <div class="name">Moni ❤️</div>
-  <div class="letter">From the smallest moments to the biggest smiles… you became my favorite part of every day. You are comfort, chaos, happiness, and home — all in one.<br><br>— Hemu</div>
+
+  <div class="letter">
+    From the smallest moments to the biggest smiles… you became my favorite part of every day.
+    You are comfort, chaos, happiness, and home — all in one.
+    <br><br>— Hemu
+  </div>
+
   <div class="proposal">Will you be mine forever?</div>
+
   <div class="buttons">
     <button class="yes" onclick="goYes()">Yes 💖</button>
     <button class="no">No 😢</button>
   </div>
-</section><!-- FOREVER --><section class="story-screen gradient2" id="foreverScreen">
+</section>
+
+<!-- FOREVER -->
+<section class="story-screen gradient2" id="foreverScreen">
   <div class="forever-msg">so the forever begins now ❤️</div>
-</section><!-- LETTER --><section class="story-screen gradient2" id="letterScreen">
+</section>
+
+<!-- LETTER -->
+<section class="story-screen gradient2" id="letterScreen">
   <div class="proposal-letter">
-    Moni… this letter is about you — the way you smile, the way you care, and the way you unknowingly became the most important part of my life. You are not just someone I love, you are the calm I search for, the happiness I return to, and the reason my heart feels full even on ordinary days. Your eyes carry warmth, your voice carries comfort, and your presence makes everything feel lighter. I want your laughter on my hardest days, your anger when I deserve it, your silence when words aren’t needed, and your love in every moment life gives us. I don’t just want moments with you, I want a lifetime of them — the small fights, the random talks, the late-night calls, the quiet walks, all of it. You are not just my love, Moni… you are my person. And if forever has a meaning, I want it to start with you, stay with you, and end with you.<br><br>— Hemu ❤️
-  </div>  <div class="swipe-hint" id="hint">swipe down for memories ⬇</div>
-</section><!-- MEMORY --><section class="memory-section" id="memoryScreen">
+    Moni… this letter is about you — the way you smile, the way you care, and the way you unknowingly became the most important part of my life...
+    <br><br>— Hemu ❤️
+  </div>
+  <div class="swipe-hint" id="hint">swipe down for memories ⬇</div>
+</section>
+
+<!-- MEMORY -->
+<section class="memory-section" id="memoryScreen">
   <div class="polaroid-stage" id="polaroidStage">
     <div class="polaroid" id="p1"><img src="photo1.jpg"><div class="caption" id="c1"></div></div>
     <div class="polaroid" id="p2"><img src="photo2.jpg"><div class="caption" id="c2"></div></div>
     <div class="polaroid" id="p3"><img src="photo3.jpg"><div class="caption" id="c3"></div></div>
     <div class="polaroid" id="p4"><img src="photo4.jpg"><div class="caption" id="c4"></div></div>
   </div>
-  <div class="final-text" id="finalText">Will you be here for this next year… and every year after? ❤️</div>
-</section><script>
+  <div class="final-text" id="finalText">
+    Will you be here for this next year… and every year after? ❤️
+  </div>
+</section>
+
+<script>
 const revealMusic=document.getElementById('revealMusic');
 const proposalMusic=document.getElementById('proposalMusic');
 const memoryMusic=document.getElementById('memoryMusic');
+
+revealMusic.loop=true;
+proposalMusic.loop=true;
+memoryMusic.loop=true;
+
+/* MOBILE AUDIO UNLOCK */
+document.body.addEventListener('touchstart', ()=>{
+  revealMusic.play().then(()=>revealMusic.pause());
+  proposalMusic.play().then(()=>proposalMusic.pause());
+  memoryMusic.play().then(()=>memoryMusic.pause());
+},{once:true});
 
 revealMusic.play().catch(()=>{});
 
 function goYes(){
   revealMusic.pause();
+  proposalMusic.currentTime=0;
   proposalMusic.play().catch(()=>{});
   document.getElementById('foreverScreen').scrollIntoView({behavior:'smooth'});
 
@@ -91,54 +195,62 @@ function goYes(){
   },60000);
 }
 
-/* start memories only when user swipes */
+/* START MEMORY WHEN USER SCROLLS */
 window.addEventListener('scroll',()=>{
-  const memory=document.getElementById('memoryScreen');
-  const rect=memory.getBoundingClientRect();
+  const rect=document.getElementById('memoryScreen').getBoundingClientRect();
   if(rect.top<window.innerHeight-120){
     proposalMusic.pause();
+    memoryMusic.currentTime=0;
     memoryMusic.play().catch(()=>{});
     startPolaroids();
   }
 },{once:true});
 
-function typeText(el,text){let i=0;function t(){if(i<text.length){el.innerHTML+=text.charAt(i);i++;setTimeout(t,40);} }t();}
+/* TYPE EFFECT */
+function typeText(el,text){
+  let i=0;
+  function t(){
+    if(i<text.length){ el.innerHTML+=text.charAt(i); i++; setTimeout(t,40); }
+  }
+  t();
+}
 
+/* CINEMATIC POLAROIDS */
 function startPolaroids(){
-  const p1=document.getElementById('p1');
-  const p2=document.getElementById('p2');
-  const p3=document.getElementById('p3');
-  const p4=document.getElementById('p4');
+  const seq=[
+    {p:'p1',c:'c1',txt:'The first smile I fell for'},
+    {p:'p2',c:'c2',txt:'Moments that felt like home'},
+    {p:'p3',c:'c3',txt:'Us, just being us'},
+    {p:'p4',c:'c4',txt:'My favorite memory'}
+  ];
 
-  setTimeout(()=>{p1.classList.add('slide-in')},400);
-  setTimeout(()=>{p1.classList.add('show-img')},1000);
-  setTimeout(()=>{typeText(document.getElementById('c1'),'The first smile I fell for')},1500);
-  setTimeout(()=>{p1.classList.add('move-out')},4200);
-
-  setTimeout(()=>{p2.classList.add('slide-in')},4800);
-  setTimeout(()=>{p2.classList.add('show-img')},5400);
-  setTimeout(()=>{typeText(document.getElementById('c2'),'Moments that felt like home')},6000);
-  setTimeout(()=>{p2.classList.add('move-out')},8600);
-
-  setTimeout(()=>{p3.classList.add('slide-in')},9200);
-  setTimeout(()=>{p3.classList.add('show-img')},9800);
-  setTimeout(()=>{typeText(document.getElementById('c3'),'Us, just being us')},10400);
-  setTimeout(()=>{p3.classList.add('move-out')},13000);
-
-  setTimeout(()=>{p4.classList.add('slide-in')},13600);
-  setTimeout(()=>{p4.classList.add('show-img')},14200);
-  setTimeout(()=>{typeText(document.getElementById('c4'),'My favorite memory')},14800);
+  seq.forEach((item,i)=>{
+    setTimeout(()=>{
+      const pol=document.getElementById(item.p);
+      pol.classList.add('slide-in');
+      setTimeout(()=>{pol.classList.add('show-img');},700);
+      setTimeout(()=>{typeText(document.getElementById(item.c),item.txt);},1100);
+      setTimeout(()=>{pol.classList.add('move-out');},3800);
+    },i*4500);
+  });
 
   setTimeout(()=>{
     document.getElementById('polaroidStage').classList.add('grid-layout');
     document.getElementById('finalText').style.opacity=1;
-  },18000);
+  },20000);
 }
 
-/* run away no button */
+/* RUN AWAY NO BUTTON */
 const noBtn=document.querySelector('.no');
 noBtn.addEventListener('mouseover',moveNo);
 noBtn.addEventListener('touchstart',moveNo);
-function moveNo(){const x=Math.random()*200-100;const y=Math.random()*200-100;noBtn.style.transform=`translate(${x}px,${y}px)`;}
-</script></body>
+
+function moveNo(){
+  const x=Math.random()*200-100;
+  const y=Math.random()*200-100;
+  noBtn.style.transform=`translate(${x}px,${y}px)`;
+}
+</script>
+
+</body>
 </html>
