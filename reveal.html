@@ -93,16 +93,27 @@ function startProposal(){
 }
 
 /* run away no */
-const noBtn=document.querySelector('.no');
-noBtn.addEventListener('touchstart',moveNo);
-noBtn.addEventListener('mouseover',moveNo);
+const noBtn = document.querySelector('.no');
+
+noBtn.addEventListener('touchstart', (e)=>{
+  e.preventDefault();
+  e.stopPropagation();
+
+  // keep music alive
+  if(revealMusic.paused){
+    revealMusic.play().catch(()=>{});
+  }
+
+  moveNo();
+});
+
+noBtn.addEventListener('mouseover', moveNo);
 
 function moveNo(){
   const x=Math.random()*200-100;
   const y=Math.random()*200-100;
   noBtn.style.transform=`translate(${x}px,${y}px)`;
 }
-
 /* swipe right to memories */
 let startX=0;
 
