@@ -18,6 +18,7 @@
       justify-content:center;
       align-items:center;
       transition:background 0.6s ease;
+      background:linear-gradient(135deg,#ff758c,#ff7eb3);
     }
 
     .story{
@@ -28,8 +29,7 @@
       overflow:hidden;
     }
 
-    /* COLLAGE BACKGROUND */
-    predominance
+    /* COLLAGE STICKERS */
     .collage span{
       position:absolute;
       font-size:22px;
@@ -79,10 +79,13 @@
 </head>
 <body>
 
+<!-- AUDIO -->
 <audio id="music" loop></audio>
+<audio id="introMusic" src="music/start.mp3" loop></audio>
 
 <div class="story">
 
+  <!-- COLLAGE BACKGROUND -->
   <div class="collage">
     <span style="top:20px;left:30px;">💖</span>
     <span style="top:80px;right:20px;">🌸</span>
@@ -90,13 +93,17 @@
     <span style="bottom:200px;right:30px;">🧸</span>
     <span style="bottom:140px;left:40px;">💌</span>
     <span style="bottom:60px;right:60px;">❤️</span>
+    <span style="top:240px;right:10px;">🌷</span>
+    <span style="top:300px;left:60px;">💘</span>
   </div>
 
+  <!-- TABLET CARD -->
   <div class="card">
     <div class="day" id="day">Tap to begin ❤️</div>
     <div class="text" id="text">A small journey through our Valentine week…</div>
   </div>
 
+  <!-- TAP ZONES -->
   <div class="tap left" onclick="prev()"></div>
   <div class="tap right" onclick="next()"></div>
 
@@ -153,8 +160,14 @@ const slides=[
 const dayEl=document.getElementById("day");
 const textEl=document.getElementById("text");
 const music=document.getElementById("music");
+const introMusic=document.getElementById("introMusic");
+
+/* play intro on open */
+introMusic.play().catch(()=>{});
 
 function show(){
+  introMusic.pause();
+
   document.body.style.background=slides[index].bg;
   dayEl.innerText=slides[index].day;
   textEl.innerText=slides[index].text;
