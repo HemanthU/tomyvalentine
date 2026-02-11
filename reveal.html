@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For Moni ❤️</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif; }
+
+    body{
+      background:linear-gradient(135deg,#ff758c,#ff7eb3);
+      overflow-x:hidden;
+      color:white;
+      text-align:center;
+    }
+
+    .section{
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:25px;
+    }
+
+    .reveal-container{
+      width:100%;
+      max-width:420px;
+      animation:fadeIn 1.2s ease;
+    }
+
+    @keyframes fadeIn{
+      from{opacity:0;transform:translateY(30px);}
+      to{opacity:1;transform:translateY(0);}
+    }
+
+    .name{
+      font-size:2.6rem;
+      font-weight:700;
+      margin-bottom:15px;
+      opacity:0;
+      animation:revealName 2s forwards;
+    }
+
+    @keyframes revealName{
+      to{opacity:1;letter-spacing:1px;}
+    }
+
+    .letter{
+      margin-top:20px;
+      font-size:1.1rem;
+      line-height:1.7;
+      opacity:0;
+      animation:fadeLetter 2s forwards;
+      animation-delay:1.5s;
+    }
+
+    @keyframes fadeLetter{ to{opacity:1;} }
+
+    .proposal{
+      margin-top:35px;
+      font-size:1.8rem;
+      font-weight:600;
+      opacity:0;
+      animation:fadeProposal 1.5s forwards;
+      animation-delay:3s;
+    }
+
+    @keyframes fadeProposal{ to{opacity:1;} }
+
+    .buttons{
+      margin-top:30px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:15px;
+      opacity:0;
+      animation:fadeButtons 1s forwards;
+      animation-delay:4s;
+    }
+
+    @keyframes fadeButtons{ to{opacity:1;} }
+
+    button{
+      padding:12px 20px;
+      border:none;
+      border-radius:30px;
+      font-size:1rem;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .yes{ background:#ff4b6e; color:white; }
+    .no{ background:white; color:#ff4b6e; position:relative; }
+
+    .yes:hover{ transform:scale(1.08); }
+
+    .hearts{
+      position:absolute;
+      font-size:20px;
+      animation:float 6s linear infinite;
+      opacity:0.7;
+    }
+
+    @keyframes float{
+      0%{ transform:translateY(100vh); opacity:0; }
+      50%{ opacity:1; }
+      100%{ transform:translateY(-10vh); opacity:0; }
+    }
+
+    .ending{
+      margin-top:25px;
+      font-size:1.2rem;
+      opacity:0;
+      transition:opacity 1.5s ease;
+    }
+
+    /* Proposal letter section */
+    .proposal-section{
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:25px;
+      background:linear-gradient(135deg,#ff9a9e,#fecfef);
+    }
+
+    .proposal-letter{
+      max-width:520px;
+      font-size:1.2rem;
+      line-height:1.7;
+      animation:fadeIn 1.5s ease;
+      text-align:left;
+    }
+
+    /* POLAROID MEMORY */
+    .memory-section{
+      min-height:100vh;
+      padding:40px 20px;
+      background:linear-gradient(135deg,#ffc3a0,#ffafbd);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:25px;
+      overflow:hidden;
+    }
+
+    .memory-title{ font-size:2rem; font-weight:700; }
+
+    .polaroid-container{
+      position:relative;
+      width:100%;
+      max-width:420px;
+      height:420px;
+    }
+
+    .polaroid{
+      position:absolute;
+      width:170px;
+      background:white;
+      color:black;
+      padding:10px 10px 25px;
+      border-radius:8px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.35);
+      opacity:0;
+      transform:translateX(120%);
+      transition:all 1s ease;
+    }
+
+    .polaroid img{ width:100%; border-radius:5px; }
+
+    .caption{ margin-top:6px; font-size:0.85rem; font-weight:500; }
+
+    .show{ opacity:1; transform:translateX(0); }
+    .fade-out{ opacity:0; transform:scale(0.8); }
+
+    .final-text{
+      font-size:1.3rem;
+      line-height:1.6;
+      opacity:0;
+      transition:opacity 1.5s ease;
+      max-width:360px;
+    }
+  </style>
+</head>
+<body>
+
+<audio id="revealMusic" src="music/final.mp3"></audio>
+<audio id="proposalMusic" src="music/proposal.mp3"></audio>
+<audio id="memoryMusic" src="music/memory.mp3"></audio>
+
+<!-- FIRST SCREEN -->
+<section class="section" id="firstScreen">
+  <div class="reveal-container">
+
+    <div class="name">Moni ❤️</div>
+
+    <div class="letter">
+      From the smallest moments to the biggest smiles… you became my favorite part of every day.
+      You are comfort, chaos, happiness, and home — all in one.
+      <br><br>— Hemu
+    </div>
+
+    <div class="proposal">Will you be mine forever?</div>
+
+    <div class="buttons">
+      <button class="yes" onclick="celebrate()">Yes 💖</button>
+      <button class="no" onmouseover="runAway()">No 😢</button>
+
+      <div class="ending" id="endingText">so the forever starts now ❤️</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SECOND LETTER -->
+<section class="proposal-section" id="secondScreen">
+  <div class="proposal-letter">
+    <h2 style="margin-bottom:18px;font-size:2rem;">My Proposal Letter 💌</h2>
+    <p>
+      Moni… this letter is about you — the way you smile, the way you care, and the way you unknowingly became the most important part of my life. You are not just someone I love, you are the calm I search for, the happiness I return to, and the reason my heart feels full even on ordinary days. Your eyes carry warmth, your voice carries comfort, and your presence makes everything feel lighter. I want your laughter on my hardest days, your anger when I deserve it, your silence when words aren’t needed, and your love in every moment life gives us. I don’t just want moments with you, I want a lifetime of them — the small fights, the random talks, the late-night calls, the quiet walks, all of it. You are not just my love, Moni… you are my person. And if forever has a meaning, I want it to start with you, stay with you, and end with you.
+      <br><br>— Hemu ❤️
+    </p>
+  </div>
+</section>
+
+<!-- MEMORY POLAROIDS -->
+<section class="memory-section" id="memoryScreen">
+  <div class="memory-title">Our Memories ❤️</div>
+
+  <div class="polaroid-container">
+    <div class="polaroid" id="p1" style="top:0;left:10px;">
+      <img src="images/photo1.jpg">
+      <div class="caption">The first smile I fell for</div>
+    </div>
+
+    <div class="polaroid" id="p2" style="top:60px;right:10px;">
+      <img src="images/photo2.jpg">
+      <div class="caption">Moments that felt like home</div>
+    </div>
+
+    <div class="polaroid" id="p3" style="bottom:80px;left:20px;">
+      <img src="images/photo3.jpg">
+      <div class="caption">Us, just being us</div>
+    </div>
+
+    <div class="polaroid" id="p4" style="bottom:0;right:20px;">
+      <img src="images/photo4.jpg">
+      <div class="caption">My favorite memory</div>
+    </div>
+  </div>
+
+  <div class="final-text" id="finalText">
+    Will you be here for this next year… and every year after? ❤️
+  </div>
+</section>
+
+<script>
+  const music=document.getElementById('revealMusic');
+  const proposalMusic=document.getElementById('proposalMusic');
+  const memoryMusic=document.getElementById('memoryMusic');
+
+  music.play().catch(()=>{});
+
+  function runAway(){
+    const btn=document.querySelector('.no');
+    const x=Math.random()*200-100;
+    const y=Math.random()*200-100;
+    btn.style.transform=`translate(${x}px,${y}px)`;
+  }
+
+  function celebrate(){
+    for(let i=0;i<25;i++){
+      const heart=document.createElement('div');
+      heart.classList.add('hearts');
+      heart.innerHTML='❤️';
+      heart.style.left=Math.random()*100+'vw';
+      document.body.appendChild(heart);
+      setTimeout(()=>heart.remove(),6000);
+    }
+
+    const ending=document.getElementById('endingText');
+    setTimeout(()=>{ending.style.opacity=1;},800);
+
+    setTimeout(()=>{
+      document.getElementById('secondScreen').scrollIntoView({behavior:'smooth'});
+      music.pause();
+      proposalMusic.play().catch(()=>{});
+
+      setTimeout(()=>{
+        document.getElementById('memoryScreen').scrollIntoView({behavior:'smooth'});
+        proposalMusic.pause();
+        memoryMusic.play().catch(()=>{});
+        startPolaroids();
+      },7000);
+
+    },1800);
+  }
+
+  function startPolaroids(){
+    const p1=document.getElementById('p1');
+    const p2=document.getElementById('p2');
+    const p3=document.getElementById('p3');
+    const p4=document.getElementById('p4');
+    const final=document.getElementById('finalText');
+
+    setTimeout(()=>p1.classList.add('show'),500);
+    setTimeout(()=>p2.classList.add('show'),2000);
+    setTimeout(()=>p3.classList.add('show'),3500);
+    setTimeout(()=>p4.classList.add('show'),5000);
+
+    setTimeout(()=>{
+      p1.classList.add('fade-out');
+      p2.classList.add('fade-out');
+      p3.classList.add('fade-out');
+      p4.classList.add('fade-out');
+    },8000);
+
+    setTimeout(()=>{ final.style.opacity=1; },9500);
+  }
+</script>
+
+</body>
+</html>
