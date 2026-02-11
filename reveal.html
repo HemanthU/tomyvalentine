@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>For Moni ❤️</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -10,7 +11,7 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
 body{overflow:hidden;color:white;text-align:center;background:black;}
 
-section{height:100vh;display:flex;justify-content:center;align-items:center;flex-direction:column;padding:25px;}
+section{height:100vh;display:flex;justify-content:center;align-items:center;padding:25px;flex-direction:column;}
 
 .gradient1{ background:linear-gradient(135deg,#ff758c,#ff7eb3); }
 .gradient2{ background:linear-gradient(135deg,#ff9a9e,#fecfef); }
@@ -39,9 +40,10 @@ transition:opacity 1s;
 
 <body>
 
-<audio id="revealMusic" src="final.mp3"></audio>
-<audio id="proposalMusic" src="proposal.mp3"></audio>
+<audio id="revealMusic" src="final.mp3" loop></audio>
+<audio id="proposalMusic" src="proposal.mp3" loop></audio>
 
+<!-- INTRO -->
 <section class="gradient1" id="first">
   <div class="name">Moni ❤️</div>
 
@@ -54,51 +56,31 @@ transition:opacity 1s;
 
   <div class="buttons">
     <button class="yes" onclick="startProposal()">Yes 💖</button>
-    <button class="no">No 😢</button>
+    <button class="no" onmouseover="moveNo()">No 😢</button>
   </div>
 </section>
 
+<!-- LETTER -->
 <section class="gradient2" id="letter" style="display:none;">
   <div class="proposal-letter">
-    Moni… this letter is about you — the way you smile, the way you care, and the way you unknowingly became the most important part of my life. You are not just someone I love, you are the calm I search for, the happiness I return to, and the reason my heart feels full even on ordinary days...
+    Moni… this letter is about you — the way you smile, the way you care, and the way you unknowingly became the most important part of my life...
     <br><br>— Hemu ❤️
   </div>
 
-  <div class="hint" id="hint">swipe right for memories →</div>
+  <div class="hint" id="hint">tap anywhere for memories ❤️</div>
 </section>
 
 <script>
+const revealMusic=document.getElementById('revealMusic');
+const proposalMusic=document.getElementById('proposalMusic');
 
-const revealMusic = document.getElementById('revealMusic');
-const proposalMusic = document.getElementById('proposalMusic');
-
-revealMusic.loop = true;
-proposalMusic.loop = true;
-
-/* 🔓 HARD MOBILE AUDIO UNLOCK */
-document.body.addEventListener('touchstart', () => {
-  revealMusic.play().then(()=>{ revealMusic.pause(); revealMusic.currentTime=0; });
-  proposalMusic.play().then(()=>{ proposalMusic.pause(); proposalMusic.currentTime=0; });
-},{ once:true });
-
-/* 🎵 KEEP FINAL MUSIC ALIVE */
-function keepFinalAlive(){
-  if(revealMusic.paused){
-    revealMusic.play().catch(()=>{});
-  }
-}
-setInterval(keepFinalAlive, 800);
-
-/* ▶️ START FINAL MUSIC */
+/* start reveal music loop */
 revealMusic.play().catch(()=>{});
 
 /* YES FLOW */
 function startProposal(){
-
   revealMusic.pause();
-  revealMusic.currentTime = 0;
-
-  proposalMusic.currentTime = 0;
+  proposalMusic.currentTime=0;
   proposalMusic.play().catch(()=>{});
 
   document.getElementById('first').style.display="none";
@@ -109,48 +91,21 @@ function startProposal(){
   },60000);
 }
 
-/* NO BUTTON CAN'T STOP MUSIC */
-const noBtn = document.querySelector('.no');
-
-noBtn.addEventListener('touchstart', (e)=>{
-  e.preventDefault();
-  e.stopPropagation();
-  moveNo();
-});
-
-noBtn.addEventListener('mouseover', moveNo);
-
-function moveNo(){
-  const x = Math.random()*200 - 100;
-  const y = Math.random()*200 - 100;
-  noBtn.style.transform = `translate(${x}px,${y}px)`;
-}
-
-/* 📲 SWIPE RIGHT DETECTION */
-let startX = 0;
-let endX = 0;
-
-document.addEventListener('touchstart', (e)=>{
-  startX = e.touches[0].clientX;
-});
-
-document.addEventListener('touchmove', (e)=>{
-  endX = e.touches[0].clientX;
-});
-
-document.addEventListener('touchend', ()=>{
-
-  if(endX - startX > 100){
-
+/* tap letter → open memories page */
+document.addEventListener('click', ()=>{
+  if(document.getElementById('letter').style.display==="flex"){
     proposalMusic.pause();
-    proposalMusic.currentTime = 0;
-
-    window.location.href = "memories.html";
+    window.location.href="memories.html";
   }
-
-  startX = 0;
-  endX = 0;
 });
+
+/* playful NO button */
+function moveNo(){
+  const btn=document.querySelector('.no');
+  const x=Math.random()*200-100;
+  const y=Math.random()*200-100;
+  btn.style.transform=`translate(${x}px,${y}px)`;
+}
 </script>
 
 </body>
