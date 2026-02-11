@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Memories ❤️</title>
+
+<style>
+body{
+margin:0;
+background:linear-gradient(135deg,#ffc3a0,#ffafbd);
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+height:100vh;
+color:white;
+text-align:center;
+font-family:sans-serif;
+overflow:hidden;
+}
+
+.polaroid{
+width:200px;
+height:260px;
+background:white;
+color:black;
+border-radius:12px;
+padding:10px;
+box-shadow:0 12px 35px rgba(0,0,0,0.3);
+opacity:0;
+transform:translateX(140%);
+transition:all 0.9s;
+position:absolute;
+}
+
+.polaroid img{
+width:100%;
+height:160px;
+object-fit:cover;
+border-radius:6px;
+}
+
+.caption{margin-top:10px;font-size:0.9rem;}
+
+.show{opacity:1;transform:translateX(0);}
+.hide{transform:translateX(-140%);opacity:0;}
+
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:18px;
+position:relative;
+}
+
+.final{
+margin-top:20px;
+opacity:0;
+transition:opacity 1.5s;
+}
+</style>
+</head>
+
+<body>
+
+<audio id="memoryMusic" src="memory.mp3"></audio>
+
+<div id="stage"></div>
+<div class="final" id="finalText">Will you be here next year… and forever? ❤️</div>
+
+<script>
+const music=document.getElementById('memoryMusic');
+music.loop=true;
+
+/* mobile unlock */
+document.body.addEventListener('touchstart', ()=>{
+  music.play().catch(()=>{});
+},{once:true});
+
+music.play().catch(()=>{});
+
+function createPolaroid(src,txt){
+  let p=document.createElement('div');
+  p.className='polaroid';
+  p.innerHTML=`<img src="${src}"><div class="caption">${txt}</div>`;
+  return p;
+}
+
+const photos=[
+["photo1.jpg","The first smile I fell for"],
+["photo2.jpg","Moments that felt like home"],
+["photo3.jpg","Us, just being us"],
+["photo4.jpg","My favorite memory"]
+];
+
+const stage=document.getElementById('stage');
+
+photos.forEach((ph,i)=>{
+  setTimeout(()=>{
+    let pol=createPolaroid(ph[0],ph[1]);
+    stage.appendChild(pol);
+
+    setTimeout(()=>pol.classList.add('show'),300);
+    setTimeout(()=>pol.classList.add('hide'),4200);
+  },i*4500);
+});
+
+setTimeout(()=>{
+  stage.className="grid";
+
+  photos.forEach(ph=>{
+    let pol=createPolaroid(ph[0],ph[1]);
+    pol.classList.add('show');
+    stage.appendChild(pol);
+  });
+
+  document.getElementById('finalText').style.opacity=1;
+},20000);
+</script>
+
+</body>
+</html>
