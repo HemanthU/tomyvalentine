@@ -44,11 +44,14 @@ transition:opacity 1s;
 
 <section class="gradient1" id="first">
   <div class="name">Moni ❤️</div>
+
   <div class="letter">
     From the smallest moments to the biggest smiles… you became my favorite part of every day.
     <br><br>— Hemu
   </div>
+
   <div class="proposal">Will you be mine forever?</div>
+
   <div class="buttons">
     <button class="yes" onclick="startProposal()">Yes 💖</button>
     <button class="no">No 😢</button>
@@ -65,23 +68,37 @@ transition:opacity 1s;
 </section>
 
 <script>
-const revealMusic=document.getElementById('revealMusic');
-const proposalMusic=document.getElementById('proposalMusic');
 
-revealMusic.loop=true;
-proposalMusic.loop=true;
+const revealMusic = document.getElementById('revealMusic');
+const proposalMusic = document.getElementById('proposalMusic');
 
-/* mobile audio unlock */
-document.body.addEventListener('touchstart', ()=>{
-  revealMusic.play().then(()=>revealMusic.pause());
-  proposalMusic.play().then(()=>proposalMusic.pause());
-},{once:true});
+revealMusic.loop = true;
+proposalMusic.loop = true;
 
+/* 🔓 HARD MOBILE AUDIO UNLOCK */
+document.body.addEventListener('touchstart', () => {
+  revealMusic.play().then(()=>{ revealMusic.pause(); revealMusic.currentTime=0; });
+  proposalMusic.play().then(()=>{ proposalMusic.pause(); proposalMusic.currentTime=0; });
+},{ once:true });
+
+/* 🎵 KEEP FINAL MUSIC ALIVE */
+function keepFinalAlive(){
+  if(revealMusic.paused){
+    revealMusic.play().catch(()=>{});
+  }
+}
+setInterval(keepFinalAlive, 800);
+
+/* ▶️ START FINAL MUSIC */
 revealMusic.play().catch(()=>{});
 
+/* YES FLOW */
 function startProposal(){
+
   revealMusic.pause();
-  proposalMusic.currentTime=0;
+  revealMusic.currentTime = 0;
+
+  proposalMusic.currentTime = 0;
   proposalMusic.play().catch(()=>{});
 
   document.getElementById('first').style.display="none";
@@ -92,41 +109,47 @@ function startProposal(){
   },60000);
 }
 
-/* run away no */
+/* NO BUTTON CAN'T STOP MUSIC */
 const noBtn = document.querySelector('.no');
 
 noBtn.addEventListener('touchstart', (e)=>{
   e.preventDefault();
   e.stopPropagation();
-
-  // keep music alive
-  if(revealMusic.paused){
-    revealMusic.play().catch(()=>{});
-  }
-
   moveNo();
 });
 
 noBtn.addEventListener('mouseover', moveNo);
 
 function moveNo(){
-  const x=Math.random()*200-100;
-  const y=Math.random()*200-100;
-  noBtn.style.transform=`translate(${x}px,${y}px)`;
+  const x = Math.random()*200 - 100;
+  const y = Math.random()*200 - 100;
+  noBtn.style.transform = `translate(${x}px,${y}px)`;
 }
-/* swipe right to memories */
-let startX=0;
 
-document.addEventListener('touchstart',e=>startX=e.touches[0].clientX);
+/* 📲 SWIPE RIGHT DETECTION */
+let startX = 0;
+let endX = 0;
 
-document.addEventListener('touchend',e=>{
-  let endX=e.changedTouches[0].clientX;
+document.addEventListener('touchstart', (e)=>{
+  startX = e.touches[0].clientX;
+});
 
-  if(endX-startX>120){
+document.addEventListener('touchmove', (e)=>{
+  endX = e.touches[0].clientX;
+});
+
+document.addEventListener('touchend', ()=>{
+
+  if(endX - startX > 100){
+
     proposalMusic.pause();
-    proposalMusic.currentTime=0;
-    window.location.href="memories.html";
+    proposalMusic.currentTime = 0;
+
+    window.location.href = "memories.html";
   }
+
+  startX = 0;
+  endX = 0;
 });
 </script>
 
