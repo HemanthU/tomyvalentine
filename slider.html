@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Valentine Week ❤️</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+
+    body{
+      height:100vh;
+      overflow:hidden;
+      color:white;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      transition:background 0.6s ease;
+    }
+
+    .story{
+      width:100%;
+      max-width:420px;
+      height:100vh;
+      position:relative;
+      overflow:hidden;
+    }
+
+    /* COLLAGE STICKERS (spread across page) */
+    .collage span{
+      position:absolute;
+      font-size:22px;
+      opacity:0.85;
+      animation:float 6s ease-in-out infinite;
+    }
+
+    @keyframes float{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-10px)}
+    }
+
+    /* Tablet card */
+    .card{
+      position:absolute;
+      top:50%;
+      left:50%;
+      transform:translate(-50%,-50%);
+      background:rgba(255,255,255,0.15);
+      backdrop-filter:blur(14px);
+      padding:28px 22px;
+      border-radius:24px;
+      width:85%;
+      text-align:center;
+      box-shadow:0 12px 35px rgba(0,0,0,0.25);
+    }
+
+    .day{
+      font-size:2.2rem;
+      font-weight:700;
+      margin-bottom:10px;
+    }
+
+    .text{
+      font-size:1.05rem;
+      line-height:1.6;
+    }
+
+    .tap{
+      position:absolute;
+      top:0;
+      bottom:0;
+      width:50%;
+    }
+    .left{left:0}
+    .right{right:0}
+  </style>
+</head>
+<body>
+
+<audio id="music"></audio>
+
+<div class="story">
+
+  <!-- COLLAGE BACKGROUND -->
+  <div class="collage" id="collage">
+    <span style="top:20px;left:30px;">💖</span>
+    <span style="top:80px;right:20px;">🌸</span>
+    <span style="top:160px;left:10px;">✨</span>
+    <span style="bottom:200px;right:30px;">🧸</span>
+    <span style="bottom:140px;left:40px;">💌</span>
+    <span style="bottom:60px;right:60px;">❤️</span>
+    <span style="top:240px;right:10px;">🌷</span>
+    <span style="top:300px;left:60px;">💘</span>
+  </div>
+
+  <!-- CARD -->
+  <div class="card">
+    <div class="day" id="day">Tap to begin ❤️</div>
+    <div class="text" id="text">A small journey through our Valentine week…</div>
+  </div>
+
+  <!-- TAP ZONES -->
+  <div class="tap left" onclick="prev()"></div>
+  <div class="tap right" onclick="next()"></div>
+
+</div>
+
+<script>
+let index=0;
+
+const slides=[
+{
+  day:"Rose Day 🌹",
+  text:"This rose carries the love I’ve been holding for you.",
+  bg:"linear-gradient(135deg,#ff9966,#ff5e62)",
+  music:"music/rose.mp3"
+},
+{
+  day:"Propose Day 💍",
+  text:"Today I just want to ask… will you stay with me, always?",
+  bg:"linear-gradient(135deg,#f857a6,#ff5858)",
+  music:"music/propose.mp3"
+},
+{
+  day:"Chocolate Day 🍫",
+  text:"Like chocolate, you make my life sweeter every day.",
+  bg:"linear-gradient(135deg,#f6d365,#fda085)",
+  music:"music/chocolate.mp3"
+},
+{
+  day:"Teddy Day 🧸",
+  text:"I wish I could hug you like a teddy and never let go.",
+  bg:"linear-gradient(135deg,#a18cd1,#fbc2eb)",
+  music:"music/teddy.mp3"
+},
+{
+  day:"Promise Day 🤝",
+  text:"I promise to stand beside you, no matter what comes.",
+  bg:"linear-gradient(135deg,#fad0c4,#ffd1ff)",
+  music:"music/promise.mp3"
+},
+{
+  day:"Hug Day 🤗",
+  text:"One hug from you is enough to fix my entire day.",
+  bg:"linear-gradient(135deg,#ffecd2,#fcb69f)",
+  music:"music/hug.mp3"
+},
+{
+  day:"Kiss Day 😘",
+  text:"One kiss from you feels like magic I never want to end.",
+  bg:"linear-gradient(135deg,#ff9a9e,#fecfef)",
+  music:"music/kiss.mp3"
+}
+];
+
+const dayEl=document.getElementById("day");
+const textEl=document.getElementById("text");
+const music=document.getElementById("music");
+
+function show(){
+  document.body.style.background=slides[index].bg;
+  dayEl.innerText=slides[index].day;
+  textEl.innerText=slides[index].text;
+
+  music.src=slides[index].music;
+  music.currentTime=0;
+  music.play().catch(()=>{});
+}
+
+function next(){
+  if(index<slides.length-1){
+    index++;
+    show();
+  }else{
+    window.location.href="reveal.html";
+  }
+}
+
+function prev(){
+  if(index>0){
+    index--;
+    show();
+  }
+}
+</script>
+
+</body>
+</html>
