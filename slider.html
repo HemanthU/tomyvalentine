@@ -28,7 +28,8 @@
       overflow:hidden;
     }
 
-    /* COLLAGE STICKERS (spread across page) */
+    /* COLLAGE BACKGROUND */
+    predominance
     .collage span{
       position:absolute;
       font-size:22px;
@@ -41,7 +42,6 @@
       50%{transform:translateY(-10px)}
     }
 
-    /* Tablet card */
     .card{
       position:absolute;
       top:50%;
@@ -79,36 +79,31 @@
 </head>
 <body>
 
-<audio id="music"></audio>
+<audio id="music" loop></audio>
 
 <div class="story">
 
-  <!-- COLLAGE BACKGROUND -->
-  <div class="collage" id="collage">
+  <div class="collage">
     <span style="top:20px;left:30px;">💖</span>
     <span style="top:80px;right:20px;">🌸</span>
     <span style="top:160px;left:10px;">✨</span>
     <span style="bottom:200px;right:30px;">🧸</span>
     <span style="bottom:140px;left:40px;">💌</span>
     <span style="bottom:60px;right:60px;">❤️</span>
-    <span style="top:240px;right:10px;">🌷</span>
-    <span style="top:300px;left:60px;">💘</span>
   </div>
 
-  <!-- CARD -->
   <div class="card">
     <div class="day" id="day">Tap to begin ❤️</div>
     <div class="text" id="text">A small journey through our Valentine week…</div>
   </div>
 
-  <!-- TAP ZONES -->
   <div class="tap left" onclick="prev()"></div>
   <div class="tap right" onclick="next()"></div>
 
 </div>
 
 <script>
-let index=0;
+let index=-1;
 
 const slides=[
 {
@@ -166,6 +161,7 @@ function show(){
 
   music.src=slides[index].music;
   music.currentTime=0;
+  music.loop=true;
   music.play().catch(()=>{});
 }
 
