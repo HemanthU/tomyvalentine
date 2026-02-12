@@ -11,10 +11,25 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
 body{overflow:hidden;color:white;text-align:center;background:black;}
 
-section{height:100vh;display:flex;justify-content:center;align-items:center;padding:25px;flex-direction:column;}
+section{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:25px;
+flex-direction:column;
+}
 
 .gradient1{ background:linear-gradient(135deg,#ff758c,#ff7eb3); }
-.gradient2{ background:linear-gradient(135deg,#ff9a9e,#fecfef); }
+
+.gradient2{
+background:linear-gradient(135deg,#ff9a9e,#fecfef);
+position:relative;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+}
 
 .name{font-size:2.6rem;font-weight:700;margin-bottom:15px;}
 .letter{font-size:1.1rem;line-height:1.7;max-width:420px;}
@@ -25,7 +40,21 @@ button{padding:12px 24px;border:none;border-radius:30px;font-size:1rem;cursor:po
 .yes{background:#ff4b6e;color:white;}
 .no{background:white;color:#ff4b6e;}
 
-.proposal-letter{max-width:460px;font-size:1.15rem;line-height:1.8;text-align:left;}
+/* CENTERED PROPOSAL LETTER */
+.proposal-letter{
+max-width:520px;
+margin:0 auto;
+font-size:1.15rem;
+line-height:1.9;
+text-align:center;
+padding:12px 10px;
+animation:fadeUp 1.2s ease;
+}
+
+@keyframes fadeUp{
+from{opacity:0;transform:translateY(20px);}
+to{opacity:1;transform:translateY(0);}
+}
 
 .hint{
 position:absolute;
@@ -91,7 +120,8 @@ transition:opacity 1s;
     I like you. I care about you.
     And I want you in my life — not for a moment, and something we build together.
 
-    Will you be mine… not just today, but in all the days we haven’t lived yet?
+    <br><br>
+    <b>Will you be mine… not just today, but in all the days we haven’t lived yet?</b>
     <br><br>— Hemu ❤️
   </div>
 
