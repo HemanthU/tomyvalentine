@@ -21,36 +21,39 @@ overflow:hidden;
 
 /* POLAROID */
 .polaroid{
-width:200px;
-height:260px;
+width:240px;
+height:300px;
 background:white;
 color:black;
-border-radius:12px;
-padding:10px;
-box-shadow:0 12px 35px rgba(0,0,0,0.35);
+border-radius:14px;
+padding:12px;
+box-shadow:0 18px 45px rgba(0,0,0,0.35);
 opacity:0;
 transform:translateX(140%);
 transition:all 0.9s ease;
 position:absolute;
 display:flex;
 flex-direction:column;
+align-items:center;
 }
 
 .polaroid img{
 width:100%;
-height:160px;
+height:180px;
 object-fit:cover;
-border-radius:6px;
+border-radius:8px;
 opacity:0;
 transition:opacity 0.7s;
 }
 
 .caption{
-margin-top:10px;
-font-size:0.9rem;
+margin-top:14px;
+font-size:1.05rem;
+font-weight:500;
+text-align:center;
 }
 
-/* animation states */
+/* animation */
 .show{opacity:1;transform:translateX(0);}
 .hide{transform:translateX(-140%);opacity:0;}
 .showimg img{opacity:1;}
@@ -59,16 +62,19 @@ font-size:0.9rem;
 .grid{
 display:grid;
 grid-template-columns:1fr 1fr;
-gap:18px;
+gap:20px;
 position:relative;
 }
 
 .final{
-margin-top:20px;
-font-size:1.2rem;
+margin-top:30px;
+font-size:1.5rem;
+font-weight:600;
 opacity:0;
 transition:opacity 1.5s;
-max-width:320px;
+max-width:360px;
+text-align:center;
+line-height:1.6;
 }
 </style>
 </head>
@@ -78,17 +84,16 @@ max-width:320px;
 <audio id="memoryMusic" src="memory.mp3" loop></audio>
 
 <div id="stage"></div>
+
 <div class="final" id="finalText">
 Will you be here for this next year… and every year after? ❤️
 </div>
 
 <script>
 const music=document.getElementById('memoryMusic');
-
-/* start memory music */
 music.play().catch(()=>{});
 
-/* polaroid creator */
+/* create polaroid */
 function createPolaroid(src,text){
   let p=document.createElement('div');
   p.className='polaroid';
@@ -107,27 +112,19 @@ const stage=document.getElementById('stage');
 
 /* cinematic sequence */
 memories.forEach((m,i)=>{
-
   setTimeout(()=>{
-
     let pol=createPolaroid(m[0],m[1]);
     stage.appendChild(pol);
 
-    /* slide in empty polaroid */
     setTimeout(()=>pol.classList.add('show'),300);
-
-    /* image fade in */
     setTimeout(()=>pol.classList.add('showimg'),900);
-
-    /* stay moment */
     setTimeout(()=>pol.classList.add('hide'),4200);
 
-  }, i*4800);
+  },i*4800);
 });
 
-/* final grid + ending text */
+/* final grid */
 setTimeout(()=>{
-
   stage.className="grid";
 
   memories.forEach(m=>{
@@ -137,7 +134,6 @@ setTimeout(()=>{
   });
 
   document.getElementById('finalText').style.opacity=1;
-
 },22000);
 </script>
 
