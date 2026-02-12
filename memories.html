@@ -166,20 +166,30 @@ playSequence(0);
 function showFinalGrid(){
 
   stage.innerHTML="";
-  stage.className="grid";
+
+  /* FORCE GRID MODE */
+  stage.style.display="grid";
+  stage.style.gridTemplateColumns="repeat(2,1fr)";
+  stage.style.gap="20px";
+  stage.style.justifyItems="center";
+  stage.style.alignItems="center";
+  stage.style.width="100%";
+  stage.style.maxWidth="420px";
+  stage.style.marginTop="20px";
 
   memories.forEach(m=>{
     let pol=createPolaroid(m[0],m[1],m[2]);
+    pol.classList.remove('hide');
     pol.classList.add('show');
     pol.querySelector("img").style.opacity=1;
-    pol.querySelector(".caption").innerHTML=m[1];
     stage.appendChild(pol);
   });
 
-  document.getElementById('finalText').style.opacity=1;
+  /* show message BELOW grid */
+  const finalText=document.getElementById('finalText');
+  finalText.style.opacity=1;
+}
 
-  /* heartbeat */
-  beat.play().catch(()=>{});
 
   /* fade music */
   let vol=1;
