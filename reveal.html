@@ -30,7 +30,7 @@ button{padding:12px 24px;border:none;border-radius:30px;font-size:1rem;cursor:po
 .hint{
 position:absolute;
 bottom:25px;
-font-size:0.9rem;
+font-size:1rem;
 opacity:0;
 transition:opacity 1s;
 }
@@ -63,7 +63,7 @@ transition:opacity 1s;
 <!-- LETTER -->
 <section class="gradient2" id="letter" style="display:none;">
   <div class="proposal-letter">
-    Moni… this letter is about you — the way you smile, the way you care, and the way you unknowingly became the most important part of my life...
+    Moni… this letter is about you — the way you smile, the way you care, and the way you unknowingly became the most important part of my life. You are not just someone I love, you are the calm I search for, the happiness I return to, and the reason my heart feels full even on ordinary days...
     <br><br>— Hemu ❤️
   </div>
 
@@ -74,7 +74,6 @@ transition:opacity 1s;
 const revealMusic=document.getElementById('revealMusic');
 const proposalMusic=document.getElementById('proposalMusic');
 
-/* start reveal music loop */
 revealMusic.play().catch(()=>{});
 
 /* YES FLOW */
@@ -91,9 +90,11 @@ function startProposal(){
   },60000);
 }
 
-/* tap letter → open memories page */
+/* open memories only AFTER hint */
 document.addEventListener('click', ()=>{
-  if(document.getElementById('letter').style.display==="flex"){
+  const hint=document.getElementById('hint');
+
+  if(hint.classList.contains('show')){
     proposalMusic.pause();
     window.location.href="memories.html";
   }
