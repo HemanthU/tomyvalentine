@@ -28,13 +28,18 @@ color:white;
 font-family:'Poppins',sans-serif;
 }
   /* animation stage */
-#stage{
+  #stage{
 display:flex;
 flex-direction:column;
-justify-content:center;
+justify-content:flex-start;
 align-items:center;
+height:75vh;
+overflow-y:auto;
+padding-bottom:20px;
+  }
+#stage::-webkit-scrollbar{
+display:none;
 }
-
 /* CLASSIC POLAROID */
 .polaroid{
 width:230px;
