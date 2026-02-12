@@ -19,6 +19,15 @@ text-align:center;
 overflow:hidden;
 }
 
+/* animation stage */
+#stage{
+width:100%;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+}
+
 /* POLAROID */
 .polaroid{
 width:240px;
@@ -28,13 +37,12 @@ color:black;
 border-radius:14px;
 padding:12px;
 box-shadow:0 18px 45px rgba(0,0,0,0.35);
-opacity:0;
-transform:translateX(140%);
-transition:all 0.9s ease;
-position:absolute;
 display:flex;
 flex-direction:column;
 align-items:center;
+opacity:0;
+transform:translateX(120px);
+transition:all 0.8s ease;
 }
 
 .polaroid img{
@@ -43,31 +51,31 @@ height:180px;
 object-fit:cover;
 border-radius:8px;
 opacity:0;
-transition:opacity 0.7s;
+transition:opacity 0.6s;
 }
 
 .caption{
 margin-top:14px;
-font-size:1.05rem;
+font-size:1.1rem;
 font-weight:500;
 text-align:center;
 }
 
-/* animation */
+/* states */
 .show{opacity:1;transform:translateX(0);}
-.hide{transform:translateX(-140%);opacity:0;}
 .showimg img{opacity:1;}
+.hide{opacity:0;transform:translateX(-120px);}
 
-/* final grid */
+/* FINAL GRID */
 .grid{
 display:grid;
 grid-template-columns:1fr 1fr;
 gap:20px;
-position:relative;
+margin-top:10px;
 }
 
 .final{
-margin-top:30px;
+margin-top:25px;
 font-size:1.5rem;
 font-weight:600;
 opacity:0;
@@ -110,31 +118,42 @@ const memories=[
 
 const stage=document.getElementById('stage');
 
-/* cinematic sequence */
-memories.forEach((m,i)=>{
-  setTimeout(()=>{
-    let pol=createPolaroid(m[0],m[1]);
-    stage.appendChild(pol);
+/* CINEMATIC SEQUENCE */
+function playSequence(i){
 
-    setTimeout(()=>pol.classList.add('show'),300);
-    setTimeout(()=>pol.classList.add('showimg'),900);
-    setTimeout(()=>pol.classList.add('hide'),4200);
+  if(i>=memories.length){
+    showFinalGrid();
+    return;
+  }
 
-  },i*4800);
-});
+  let pol=createPolaroid(memories[i][0],memories[i][1]);
+  stage.innerHTML="";
+  stage.appendChild(pol);
 
-/* final grid */
-setTimeout(()=>{
+  setTimeout(()=>pol.classList.add('show'),200);
+  setTimeout(()=>pol.classList.add('showimg'),900);
+  setTimeout(()=>pol.classList.add('hide'),4200);
+
+  setTimeout(()=>playSequence(i+1),4800);
+}
+
+playSequence(0);
+
+/* FINAL GRID */
+function showFinalGrid(){
+
+  stage.innerHTML="";
   stage.className="grid";
 
   memories.forEach(m=>{
     let pol=createPolaroid(m[0],m[1]);
     pol.classList.add('show');
+    pol.querySelector("img").style.opacity=1;
     stage.appendChild(pol);
   });
 
   document.getElementById('finalText').style.opacity=1;
-},22000);
+}
 </script>
 
 </body>
